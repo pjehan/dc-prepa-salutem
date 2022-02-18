@@ -20,6 +20,12 @@ $stmt = $connection->prepare($query);
 $stmt->execute();
 $doctors = $stmt->fetchAll();
 
+// Récupérer la liste dans docteurs en base de données
+$query = "SELECT * FROM opening_hours";
+$stmt = $connection->prepare($query);
+$stmt->execute();
+$opening_days = $stmt->fetchAll();
+
 /*
 echo "<pre>";
 print_r($doctors);
