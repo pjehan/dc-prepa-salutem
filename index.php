@@ -54,34 +54,16 @@ require_once 'layout/header.php';
             <article>
                 <h3>Horaires d'ouverture</h3>
                 <table class="opening-hours">
-                    <tr>
-                        <td>Lundi</td>
-                        <td class="hours">9h - 17h</td>
-                    </tr>
-                    <tr class="today">
-                        <td>Mardi</td>
-                        <td class="hours">9h - 17h</td>
-                    </tr>
-                    <tr>
-                        <td>Mercredi</td>
-                        <td class="hours">9h - 17h</td>
-                    </tr>
-                    <tr>
-                        <td>Jeudi</td>
-                        <td class="hours">9h - 17h</td>
-                    </tr>
-                    <tr>
-                        <td>Vendredi</td>
-                        <td class="hours">9h - 17h</td>
-                    </tr>
-                    <tr>
-                        <td>Samedi</td>
-                        <td class="hours">9h - 12h</td>
-                    </tr>
-                    <tr>
-                        <td>Dimanche</td>
-                        <td class="hours">Fermé</td>
-                    </tr>
+                    <?php foreach($opening_days as $day) : ?>
+                        <tr>
+                            <td><?php echo $day['day_name']; ?></td>
+                            <td class="hours">
+                                <?php echo $day['hour_from']; ?>
+                                -
+                                <?php echo $day['hour_until']; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </table>
             </article>
             <article>
