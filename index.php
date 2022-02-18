@@ -21,7 +21,7 @@ $stmt->execute();
 $doctors = $stmt->fetchAll();
 
 // Récupérer la liste dans docteurs en base de données
-$query = "SELECT * FROM opening_hours";
+$query = "SELECT *, TIME_FORMAT(hour_from, '%Hh%i') AS hour_from_format, TIME_FORMAT(hour_until, '%Hh%i') AS hour_until_format FROM opening_hours";
 $stmt = $connection->prepare($query);
 $stmt->execute();
 $opening_days = $stmt->fetchAll();
@@ -58,9 +58,9 @@ require_once 'layout/header.php';
                         <tr>
                             <td><?php echo $day['day_name']; ?></td>
                             <td class="hours">
-                                <?php echo $day['hour_from']; ?>
+                                <?php echo $day['hour_from_format']; ?>
                                 -
-                                <?php echo $day['hour_until']; ?>
+                                <?php echo $day['hour_until_format']; ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
