@@ -26,6 +26,9 @@ $stmt = $connection->prepare($query);
 $stmt->execute();
 $opening_days = $stmt->fetchAll();
 
+$today = new DateTime();
+$day_of_week = $today->format('w');
+
 /*
 echo "<pre>";
 print_r($doctors);
@@ -54,8 +57,8 @@ require_once 'layout/header.php';
             <article>
                 <h3>Horaires d'ouverture</h3>
                 <table class="opening-hours">
-                    <?php foreach($opening_days as $day) : ?>
-                        <tr>
+                    <?php foreach($opening_days as $key => $day) : ?>
+                        <tr class="<?php echo $key + 1 == $day_of_week ? 'today' : ''; ?>">
                             <td><?php echo $day['day_name']; ?></td>
                             <td class="hours">
                                 <?php echo $day['hour_from_format']; ?>
